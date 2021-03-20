@@ -1,0 +1,20 @@
+--CursorExplicito
+SET SERVEROUTPUT ON;
+SET VERIFY OFF;
+DECLARE
+	nombre VARCHAR(100);
+	CURSOR 	c_rNombre IS
+	SELECT N_NOMCLIENTE 
+	FROM CLIENTE;
+	
+
+BEGIN
+	OPEN c_rNombre;
+	LOOP
+		FETCH c_rNombre INTO nombre;
+		DBMS_OUTPUT.PUT_LINE(nombre);
+		EXIT WHEN c_rNombre%NOTFOUND;
+	END LOOP;
+	CLOSE c_rNombre;
+END;
+/
